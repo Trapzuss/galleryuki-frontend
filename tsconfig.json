@@ -15,7 +15,14 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node"]
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/node",
+      "@nuxtjs/dayjs",
+      "@nuxtjs/firebase",
+      "vue-sweetalert2"
+    ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
