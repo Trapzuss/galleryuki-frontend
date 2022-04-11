@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="n in 12" :key="n" class="d-flex child-flex" cols="2">
+      <v-col
+        v-for="(post, i) in newestPost"
+        :key="i"
+        class="d-flex child-flex"
+        cols="2"
+      >
         <v-hover #default="{ hover }">
           <v-card hover>
             <v-sheet
@@ -11,12 +16,7 @@
               height="100%"
               width="100%"
             ></v-sheet>
-            <v-img
-              :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-              :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-              aspect-ratio="1"
-              class="grey lighten-2"
-            >
+            <v-img :src="post.images" aspect-ratio="1" class="grey lighten-2">
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
@@ -35,6 +35,18 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import mixins from 'vue-typed-mixins'
+import { Post } from '~/interfaces/Post.interface'
+import post from '~/mixins/post'
+export default mixins(post).extend({
+  async mounted() {
+    this.newestPost = await this.getNewestPost()
+  },
+  data() {
+    return {
+      newestPost: [] as Array<Post>,
+    }
+  },
+})
 </script>
 <style></style>
