@@ -50,15 +50,15 @@
               <v-icon v-else> mdi-account-circle </v-icon>
             </v-btn>
           </template>
-          <v-btn fab dark small color="green">
+          <!-- <v-btn fab dark small color="green">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn> -->
+          <v-btn fab dark small color="indigo" @click="routeTo('/upload')">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <v-btn fab dark small color="indigo" @click="routeTo('/upload')">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-          <v-btn fab dark small color="red">
+          <!-- <v-btn fab dark small color="red">
             <v-icon>mdi-delete</v-icon>
-          </v-btn>
+          </v-btn> -->
         </v-speed-dial>
         <Nuxt />
       </v-container>

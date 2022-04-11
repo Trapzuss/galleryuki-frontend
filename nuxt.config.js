@@ -56,6 +56,11 @@ export default {
     credentials: true,
   },
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:4000',
+    FIRE_ENV: process.env.FIRE_ENV,
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

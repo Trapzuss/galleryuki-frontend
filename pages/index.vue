@@ -1,29 +1,29 @@
 <template>
   <v-container class="tw-relative">
     <v-row justify="center" align="center" class="tw-relative">
-      <v-col cols="12" sm="8"> <BannerCarousel /> </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10"> <BannerCarousel /> </v-col>
+      <v-col cols="12" xl="10">
         <h3 class="tw-text-4xl">Recommend</h3>
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <ReccommedList />
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <h3 class="tw-text-4xl">Daily</h3>
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <DailyRanking />
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <h3 class="tw-text-4xl">Popular</h3>
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <PopularList />
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <h3 class="tw-text-4xl">Newest</h3>
       </v-col>
-      <v-col cols="12" sm="8">
+      <v-col cols="12" xl="10">
         <NewestList />
       </v-col>
     </v-row>
