@@ -1,7 +1,14 @@
 <template>
   <v-container>
+    <v-row
+      justify="end"
+      align="center"
+      class="tw-text-gray-400 hover:tw-text-gray-600 hover:tw-underline tw-cursor-pointer"
+      @click="routeTo('/ranking')"
+      >See all</v-row
+    >
     <v-row>
-      <v-col v-for="n in 12" :key="n" class="d-flex child-flex" cols="2">
+      <v-col v-for="n in 4" :key="n" class="d-flex child-flex" cols="3">
         <v-hover #default="{ hover }">
           <v-card hover>
             <v-sheet
@@ -35,6 +42,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+import mixins from 'vue-typed-mixins'
+import utils from '~/mixins/utils'
+export default mixins(utils).extend({})
 </script>
 <style></style>

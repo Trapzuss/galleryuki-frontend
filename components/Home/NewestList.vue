@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-row
+      justify="end"
+      align="center"
+      class="tw-text-gray-400 hover:tw-text-gray-600 hover:tw-underline tw-cursor-pointer"
+      @click="routeTo('/newest')"
+      >See all</v-row
+    >
     <v-row>
       <v-col
         v-for="(post, i) in newestPost"
@@ -38,7 +45,8 @@ import Vue from 'vue'
 import mixins from 'vue-typed-mixins'
 import { Post } from '~/interfaces/Post.interface'
 import post from '~/mixins/post'
-export default mixins(post).extend({
+import utils from '~/mixins/utils'
+export default mixins(post, utils).extend({
   async mounted() {
     this.newestPost = await this.getNewestPost()
   },
