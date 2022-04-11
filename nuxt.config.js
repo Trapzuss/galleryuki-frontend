@@ -107,7 +107,8 @@ export default {
     preconnect: true,
     // stylePath: 'css/fonts.css',
     families: {
-      Roboto: true,
+      // Roboto: true,
+      Ubuntu: true,
     },
   },
 
