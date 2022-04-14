@@ -26,6 +26,7 @@
       <v-col cols="12" xl="10">
         <NewestList />
       </v-col>
+      <v-col><v-btn @click="getAllPost">getAllPost</v-btn></v-col>
     </v-row>
   </v-container>
 </template>
@@ -37,7 +38,9 @@ import DailyRanking from '~/components/Home/DailyRanking.vue'
 import PopularList from '~/components/Home/PopularList.vue'
 import NewestList from '~/components/Home/NewestList.vue'
 import BannerCarousel from '@/components/Home/BannerCarousel.vue'
-export default Vue.extend({
+import mixins from 'vue-typed-mixins'
+import post from '~/mixins/post'
+export default mixins(post).extend({
   components: {
     ReccommedList,
     PopularList,

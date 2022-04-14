@@ -30,5 +30,13 @@ export default mixins(firebase).extend({
     async getNewestPost() {
       return await this.$axios.$get(`${this.databaseURL}/posts.json`)
     },
+    async getAllPost() {
+      try {
+        let res = await this.$axios.$get(`http://localhost:3000/post`)
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 })
