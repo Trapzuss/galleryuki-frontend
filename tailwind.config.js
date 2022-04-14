@@ -10,6 +10,9 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      Ubuntu: ['Ubuntu', 'sans-serif'],
+    },
     extend: {
       transitionDuration: {
         0: '0ms',

@@ -2,26 +2,26 @@
   <v-container class="tw-relative">
     <v-row justify="center" align="center" class="tw-relative">
       <v-col cols="12" xl="10"> <BannerCarousel /> </v-col>
-      <v-col cols="12" xl="10">
+      <!-- <v-col cols="12" xl="10">
         <h3 class="tw-text-4xl">Recommend</h3>
       </v-col>
       <v-col cols="12" xl="10">
         <ReccommedList />
-      </v-col>
+      </v-col> -->
       <v-col cols="12" xl="10">
-        <h3 class="tw-text-4xl">Daily</h3>
+        <span class="tw-text-4xl tw-font-bold">Daily Ranking</span>
       </v-col>
       <v-col cols="12" xl="10">
         <DailyRanking />
       </v-col>
       <v-col cols="12" xl="10">
-        <h3 class="tw-text-4xl">Popular</h3>
+        <h3 class="tw-text-4xl tw-font-bold">Popular Tags</h3>
       </v-col>
       <v-col cols="12" xl="10">
         <PopularList />
       </v-col>
-      <v-col cols="12" xl="10">
-        <h3 class="tw-text-4xl">Newest</h3>
+      <v-col cols="12" xl="10  tw-font-bold">
+        <h3 class="tw-text-4xl">Newest Works</h3>
       </v-col>
       <v-col cols="12" xl="10">
         <NewestList />
