@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar dark absolute app>
-      <v-app-bar-nav-icon />
+      <!-- <v-app-bar-nav-icon /> -->
       <v-avatar
         rounded="sm"
         max-height="50px"
