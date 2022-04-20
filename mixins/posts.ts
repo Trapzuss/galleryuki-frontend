@@ -2,10 +2,19 @@ import Vue from 'vue'
 import firebase from '@/mixins/firebase'
 import { Post } from '@/interfaces/Post.interface'
 import mixins from 'vue-typed-mixins'
+import { User } from '~/interfaces/User.interface'
+import { mapState } from 'vuex'
 export default mixins(firebase).extend({
-  //   mixins: [firebase],
-
+  computed: {
+    ...mapState({
+      load: (state: any) => state.load as any,
+    }),
+  },
   methods: {
+    async increaseFavorite(id: string) {
+      let res = await this.$axios.$post(`/posts/${id}`)
+      return res
+    },
     async createPost(data: any) {
       const fire = this.$fireModule as any
       let storageRef = await fire
@@ -20,20 +29,27 @@ export default mixins(firebase).extend({
       let image = imagesStorage.child(uploadedImage.ref.name)
       let imageUrl = await image.getDownloadURL()
       let payload = {
+        userId: data.userId,
         title: data.title,
         description: data.description,
-        categories: data.categories,
-        images: imageUrl,
+        category: data.categories,
+        imageUrl: imageUrl,
       }
-      await this.$axios.post(`${this.databaseURL}/posts.json`, payload)
+      await this.$axios.$post(`/posts`, payload)
+    },
+    async getPostById(postId: string) {
+      return await this.$axios.$get(`/posts/${postId}`)
     },
     async getNewestPost() {
-      return await this.$axios.$get(`${this.databaseURL}/posts.json`)
+      // firebase
+      // return await this.$axios.$get(`${this.databaseURL}/posts.json`)
+      // apiService
+      return await this.$axios.$get(`/posts/newest`)
     },
     async getAllPost() {
       try {
-        let res = await this.$axios.$get(`http://localhost:3000/post`)
-        console.log(res)
+        let res = await this.$axios.$get(`/posts`)
+        // console.log(res)
       } catch (error) {
         console.log(error)
       }

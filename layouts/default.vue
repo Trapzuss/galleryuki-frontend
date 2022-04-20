@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar dark absolute app>
-      <v-app-bar-nav-icon />
+      <!-- <v-app-bar-nav-icon /> -->
       <v-avatar
         rounded="sm"
         max-height="50px"
@@ -17,7 +17,7 @@
       </v-avatar>
       <v-spacer></v-spacer>
 
-      <v-text-field
+      <!-- <v-text-field
         id="searchNav"
         prepend-inner-icon="mdi-magnify"
         rounded
@@ -27,9 +27,9 @@
         dense
         outlined
         color="white"
-      ></v-text-field>
+      ></v-text-field> -->
       <v-spacer></v-spacer>
-      <ProfileMenu />
+      <ProfileMenu :user="user" @onDisconnect="onDisconnect" />
     </v-app-bar>
     <v-main>
       <v-container class="tw-my-4">
@@ -74,11 +74,17 @@
 import Vue from 'vue'
 import ProfileMenu from '@/components/Layout/ProfileMenu.vue'
 import utils from '~/mixins/utils'
-export default Vue.extend({
+import mixins from 'vue-typed-mixins'
+import auth from '~/mixins/auth'
+export default mixins(utils, auth).extend({
   components: {
     ProfileMenu,
   },
-  mixins: [utils],
+  methods: {
+    onDisconnect() {
+      this.logout()
+    },
+  },
   data() {
     return {
       fixed: false,

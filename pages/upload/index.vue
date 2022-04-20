@@ -112,9 +112,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import firebase from '@/mixins/firebase'
-import post from '@/mixins/post'
+import posts from '@/mixins/posts'
 import mixins from 'vue-typed-mixins'
-export default mixins(post).extend({
+import auth from '~/mixins/auth'
+export default mixins(posts, auth).extend({
   // mixins: [firebase, post],
   data() {
     return {
@@ -145,6 +146,7 @@ export default mixins(post).extend({
         this.loadingConfirm = true
         if (this.validate()) {
           let payload = {
+            userId: this.user?._id,
             title: this.title,
             description: this.description,
             categories: this.selectCategories,
