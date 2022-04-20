@@ -4,6 +4,14 @@
       <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="2">
         <v-hover #default="{ hover }">
           <v-card hover height="400px">
+            <v-fab-transition>
+              <div class="tw-absolute tw-right-0 tw-m-2 tw-z-[3]" v-if="hover">
+                <v-btn class="tw-z-[3]" color="white" fab small depressed>
+                  <!-- <v-icon color="red">mdi-cards-heart</v-icon> -->
+                  <v-icon color="red">mdi-cards-heart-outline</v-icon>
+                </v-btn>
+              </div>
+            </v-fab-transition>
             <v-sheet
               v-if="hover"
               class="tw-absolute tw-z-[2] tw-opacity-20"
