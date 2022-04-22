@@ -40,7 +40,7 @@ export default mixins(firebase).extend({
       console.log(error)
       await this.$swal.fire({
         icon: 'warning',
-        title: 'กรุณาเข้าสู่ระบบ',
+        title: 'Please, Logging in before post',
       })
       this.$router.push('/')
     }
