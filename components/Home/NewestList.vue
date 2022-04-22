@@ -1,11 +1,20 @@
 <template>
   <v-container>
-    <v-row
-      justify="end"
-      align="center"
-      class="tw-text-gray-400 hover:tw-text-gray-600 hover:tw-underline tw-cursor-pointer"
-      @click="routeTo('/newest')"
-      >See all</v-row
+    <v-row justify="end" align="center" class="tw-bg-red-100 tw-rounded-md">
+      <v-chip
+        label
+        color="primary"
+        outlined
+        @click="routeTo('/newest')"
+        class="tw-font-Ubuntu tw-font-bold tw-text-gray-900 hover:tw-underline tw-cursor-pointer"
+        >Newest</v-chip
+      >
+      <v-spacer></v-spacer>
+      <span
+        @click="routeTo('/newest')"
+        class="tw-font-Ubuntu tw-font-bold tw-text-gray-900 tw-opacity-60 hover:tw-opacity-100 tw-cursor-pointer tw-mx-2"
+        >View all <v-icon small>mdi-chevron-right</v-icon></span
+      ></v-row
     >
     <v-row>
       <v-col
@@ -18,17 +27,17 @@
           <v-card hover @click="routeTo(`/posts/${post._id}`)">
             <v-fab-transition>
               <div class="tw-absolute tw-right-0 tw-m-2 tw-z-[3]" v-if="hover">
-                <v-btn
-                  class="tw-z-[3]"
+                <v-chip
+                  class="tw-z-[3] tw-relative"
                   color="white"
-                  fab
                   small
                   depressed
-                  @click.stop="favoritePost('test')"
                 >
-                  <!-- <v-icon color="red">mdi-cards-heart</v-icon> -->
-                  <v-icon color="red">mdi-cards-heart-outline</v-icon>
-                </v-btn>
+                  <v-icon color="red" small left>mdi-cards-heart</v-icon>
+                  <span class="tw-font-Ubuntu tw-text-gray-800 tw-font-bold">{{
+                    post.favoriteAmount
+                  }}</span>
+                </v-chip>
               </div>
             </v-fab-transition>
             <v-sheet
