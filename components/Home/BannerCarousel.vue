@@ -1,11 +1,20 @@
 <template>
   <v-container>
-    <v-carousel hide-delimiters cycle height="20vh">
+    <v-carousel
+      class="tw-rounded-md"
+      hide-delimiters
+      height="30vh"
+      cycle
+      progress
+      progress-color="primary"
+    >
       <v-carousel-item
+        transition="fade-transition"
         v-for="(item, i) in items"
         :key="i"
-        :src="item.src"
-      ></v-carousel-item>
+      >
+        <v-img :src="item.src" class="custome-v-img"></v-img>
+      </v-carousel-item>
     </v-carousel>
   </v-container>
 </template>
@@ -17,20 +26,31 @@ export default Vue.extend({
     return {
       items: [
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          src: '/images/kiffells-kiffles.gif',
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          src: '/images/yuuki-konno-sao.gif',
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          src: '/images/yuuki-konno.gif',
         },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-        },
+        // {
+        //   src: '/images/yuukiC.jpg',
+        // },
       ],
     }
   },
 })
 </script>
-<style></style>
+<style lang="scss">
+.custome-v-img .v-image__image,
+.v-image__placeholder {
+  z-index: -1;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+>
