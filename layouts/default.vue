@@ -2,19 +2,28 @@
   <v-app>
     <v-app-bar dark absolute app>
       <!-- <v-app-bar-nav-icon /> -->
-      <v-avatar
-        rounded="sm"
-        max-height="50px"
-        width="200px"
-        @click="routeTo('/')"
-        class="tw-cursor-pointer"
-      >
-        <v-img
-          position="0px -60px"
-          src="/images/Yuuki_Asuka_Empire.png"
-          alt="Yuuki_Asuka_Empire"
-        ></v-img>
-      </v-avatar>
+      <div class="tw-relative">
+        <v-avatar
+          rounded="sm"
+          max-height="50px"
+          width="200px"
+          class="tw-border-2 tw-border-white"
+        >
+          <v-img
+            position="0px -60px"
+            src="/images/Yuuki_Asuka_Empire.png"
+            alt="Yuuki_Asuka_Empire"
+          ></v-img>
+        </v-avatar>
+        <v-chip
+          @click="routeTo('/')"
+          label
+          color="primary"
+          outlined
+          class="tw-h-full tw-w-full tw-absolute tw-top-[50%] tw-left-[50%] tw-translate-x-[-50%] tw-translate-y-[-50%] tw-cursor-pointer"
+          >galleryuuki
+        </v-chip>
+      </div>
       <v-spacer></v-spacer>
 
       <!-- <v-text-field
@@ -31,7 +40,7 @@
       <v-spacer></v-spacer>
       <ProfileMenu :user="user" @onDisconnect="onDisconnect" />
     </v-app-bar>
-    <v-main>
+    <v-main class="tw-bg-[#1d1d1d]">
       <v-container class="tw-my-4">
         <v-speed-dial
           fixed

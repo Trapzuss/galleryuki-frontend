@@ -11,15 +11,19 @@
     <v-card>
       <v-list-item-content class="justify-start">
         <div class="tw-mx-auto text-left" v-if="isHaveUser">
-          <div class="tw-mx-4">
-            <v-avatar color="#f6f6f6" class="tw-my-2" rounded="pill">
-              <v-icon color="#272727">mdi-account</v-icon>
-            </v-avatar>
-            <h3>{{ user.userDisplayName }}</h3>
-            <p class="text-caption mt-1">
-              {{ user.username }}
-            </p>
-          </div>
+          <v-row align="center" no-gutters justify="center">
+            <v-col cols="4" class="tw-pl-2">
+              <v-avatar color="#f6f6f6" class="tw-my-2" rounded="pill">
+                <v-icon color="#272727">mdi-account</v-icon>
+              </v-avatar>
+            </v-col>
+            <v-col cols="8">
+              <p class="mb-0">{{ user.userDisplayName }}</p>
+              <span class="text-caption mt-1">
+                {{ user.username }}
+              </span></v-col
+            >
+          </v-row>
 
           <v-divider class="my-3"></v-divider>
           <v-btn
