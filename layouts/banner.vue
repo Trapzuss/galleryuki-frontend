@@ -17,7 +17,7 @@
       </v-avatar>
       <v-spacer></v-spacer>
 
-      <v-text-field
+      <!-- <v-text-field
         id="searchNav"
         prepend-inner-icon="mdi-magnify"
         rounded
@@ -28,11 +28,11 @@
         outlined
         color="white"
       ></v-text-field>
-      <v-spacer></v-spacer>
+      <v-spacer></v-spacer> -->
       <ProfileMenu />
     </v-app-bar>
     <v-main>
-      <v-container fluid class="ma-0 pa-0">
+      <v-container fluid class="ma-0 pa-0 mb-4">
         <v-speed-dial
           fixed
           v-model="fab"
@@ -64,7 +64,7 @@
       </v-container>
     </v-main>
 
-    <v-footer :absolute="!fixed" app>
+    <v-footer absolute app fixed>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
