@@ -20,9 +20,9 @@
       <v-col cols="12" xl="10">
         <PopularList />
       </v-col> -->
-      <v-col cols="12" xl="10  tw-font-bold">
+      <!-- <v-col cols="12" xl="10  tw-font-bold">
         <h3 class="tw-text-4xl">Newest Works</h3>
-      </v-col>
+      </v-col> -->
       <v-col cols="12" xl="10">
         <NewestList />
       </v-col>

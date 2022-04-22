@@ -10,7 +10,9 @@
             ><v-col cols="12"
               ><v-avatar color="secondary" size="36" class="tw-mr-2"
                 ><v-icon color="accent">mdi-account</v-icon></v-avatar
-              ><span class="tw-font-bold tw-text-lg">{{ post.userId }}</span>
+              ><span class="tw-font-bold tw-text-lg">{{
+                userDisplayName
+              }}</span>
             </v-col>
           </v-row>
           <v-row no-gutters class="tw-p-4">
@@ -65,7 +67,11 @@ export default mixins(posts, auth).extend({
       post: {} as Post,
     }
   },
-  computed: {},
+  computed: {
+    userDisplayName(): any {
+      return this.post?.user?.userDisplayName
+    },
+  },
   methods: {
     async favoritePost(id: string) {
       await this.increaseFavorite(id)
