@@ -56,10 +56,10 @@ export default {
     credentials: true,
   },
 
-  env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:4000',
-    FIRE_ENV: process.env.FIRE_ENV,
-  },
+  // env: {
+  //   baseUrl: process.env.BASE_URL ,
+  //   FIRE_ENV: process.env.FIRE_ENV,
+  // },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -68,18 +68,18 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          primary: '#E71D36',
+          accent: '#ECECEC',
+          secondary: '#011627',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
         light: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          primary: '#E71D36',
+          accent: '#ECECEC',
+          secondary: '#011627',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,

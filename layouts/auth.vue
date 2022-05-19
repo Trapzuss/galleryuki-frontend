@@ -15,9 +15,9 @@
           alt="Yuuki_Asuka_Empire"
         ></v-img>
       </v-avatar>
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer>
 
-      <!-- <v-text-field
+      <v-text-field
         id="searchNav"
         prepend-inner-icon="mdi-magnify"
         rounded
@@ -27,13 +27,13 @@
         dense
         outlined
         color="white"
-      ></v-text-field>
-      <v-spacer></v-spacer> -->
+      ></v-text-field> -->
+      <v-spacer></v-spacer>
       <ProfileMenu />
     </v-app-bar>
     <v-main>
-      <v-container fluid class="ma-0 pa-0 mb-4">
-        <v-speed-dial
+      <v-container fluid class="ma-0 pa-0 tw-bg-slate-100">
+        <!-- <v-speed-dial
           fixed
           v-model="fab"
           :top="top"
@@ -50,21 +50,17 @@
               <v-icon v-else> mdi-account-circle </v-icon>
             </v-btn>
           </template>
-          <!-- <v-btn fab dark small color="green">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn> -->
+     
           <v-btn fab dark small color="indigo" @click="routeTo('/upload')">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <!-- <v-btn fab dark small color="red">
-            <v-icon>mdi-delete</v-icon>
-          </v-btn> -->
-        </v-speed-dial>
+   
+        </v-speed-dial> -->
         <Nuxt />
       </v-container>
     </v-main>
 
-    <v-footer absolute app fixed>
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>

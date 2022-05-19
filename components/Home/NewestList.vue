@@ -1,11 +1,20 @@
 <template>
   <v-container>
-    <v-row
-      justify="end"
-      align="center"
-      class="tw-text-gray-400 hover:tw-text-gray-600 hover:tw-underline tw-cursor-pointer"
-      @click="routeTo('/newest')"
-      >See all</v-row
+    <v-row justify="end" align="center" class="tw-bg-red-100 tw-rounded-md">
+      <v-chip
+        label
+        color="primary"
+        outlined
+        @click="routeTo('/newest')"
+        class="tw-font-Ubuntu tw-font-bold tw-text-gray-900 hover:tw-underline tw-cursor-pointer"
+        >Newest</v-chip
+      >
+      <v-spacer></v-spacer>
+      <span
+        @click="routeTo('/newest')"
+        class="tw-font-Ubuntu tw-font-bold tw-text-gray-900 tw-opacity-60 hover:tw-opacity-100 tw-cursor-pointer tw-mx-2"
+        >View all <v-icon small>mdi-chevron-right</v-icon></span
+      ></v-row
     >
     <v-row>
       <v-col
@@ -15,7 +24,22 @@
         cols="2"
       >
         <v-hover #default="{ hover }">
-          <v-card hover>
+          <v-card hover @click="routeTo(`/posts/${post._id}`)">
+            <v-fab-transition>
+              <div class="tw-absolute tw-right-0 tw-m-2 tw-z-[3]" v-if="hover">
+                <v-chip
+                  class="tw-z-[3] tw-relative"
+                  color="white"
+                  small
+                  depressed
+                >
+                  <v-icon color="red" small left>mdi-cards-heart</v-icon>
+                  <span class="tw-font-Ubuntu tw-text-gray-800 tw-font-bold">{{
+                    post.favoriteAmount
+                  }}</span>
+                </v-chip>
+              </div>
+            </v-fab-transition>
             <v-sheet
               v-if="hover"
               class="tw-absolute tw-z-[2] tw-opacity-20"
@@ -23,7 +47,7 @@
               height="100%"
               width="100%"
             ></v-sheet>
-            <v-img :src="post.images" aspect-ratio="1" class="grey lighten-2">
+            <v-img :src="post.imageUrl" aspect-ratio="1" class="grey lighten-2">
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
@@ -44,9 +68,9 @@
 import Vue from 'vue'
 import mixins from 'vue-typed-mixins'
 import { Post } from '~/interfaces/Post.interface'
-import post from '~/mixins/post'
+import posts from '~/mixins/posts'
 import utils from '~/mixins/utils'
-export default mixins(post, utils).extend({
+export default mixins(posts, utils).extend({
   async mounted() {
     this.newestPost = await this.getNewestPost()
   },
