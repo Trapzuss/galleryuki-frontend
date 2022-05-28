@@ -30,7 +30,7 @@ export default mixins(firebase).extend({
     try {
       let Restrictpath = ['/upload']
       if (Restrictpath.includes(this.$route.path)) {
-        console.log('เข้า')
+        // console.log('เข้า')
 
         if (!this.user?._id) throw Error()
       }

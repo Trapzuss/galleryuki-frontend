@@ -44,27 +44,28 @@
               label="password"
               required
             ></v-text-field>
-
-            <v-btn
-              rounded
-              depressed
-              :disabled="!valid"
-              color="secondary"
-              class="mr-4"
-              @click="validate"
+            <v-row align="center" justify="space-between">
+              <v-btn
+                outlined
+                rounded
+                depressed
+                color="secondary"
+                class="mr-4"
+                @click="routeTo('/login')"
+              >
+                Have an account?
+              </v-btn>
+              <v-btn
+                rounded
+                depressed
+                :disabled="!valid"
+                color="secondary"
+                class="mr-4"
+                @click="validate"
+              >
+                Register
+              </v-btn></v-row
             >
-              Register
-            </v-btn>
-            <v-btn
-              outlined
-              rounded
-              depressed
-              color="secondary"
-              class="mr-4"
-              @click="routeTo('/login')"
-            >
-              Have an account?
-            </v-btn>
           </v-form>
         </v-card-text>
       </v-card>

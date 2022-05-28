@@ -38,9 +38,9 @@
         color="white"
       ></v-text-field> -->
       <v-spacer></v-spacer>
-      <ProfileMenu :user="user" @onDisconnect="onDisconnect" />
+      <ProfileMenu @onDisconnect="onDisconnect" />
     </v-app-bar>
-    <v-main class="tw-bg-[#1d1d1d]">
+    <v-main>
       <v-container class="tw-my-4">
         <v-speed-dial
           fixed

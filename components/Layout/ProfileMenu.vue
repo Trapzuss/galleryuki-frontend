@@ -50,7 +50,7 @@
             class="d-flex justify-start"
             @click="routeTo('login')"
           >
-            Login!
+            <v-icon left>mdi-login</v-icon> Sign In
           </v-btn>
         </div>
       </v-list-item-content>
@@ -62,14 +62,16 @@
 import Vue from 'vue'
 import mixins from 'vue-typed-mixins'
 import { User } from '~/interfaces/User.interface'
+import auth from '~/mixins/auth'
 import utils from '~/mixins/utils'
-export default mixins(utils).extend({
+export default mixins(utils, auth).extend({
   props: {
-    user: Object as Vue.PropType<User>,
+    // user: Object as Vue.PropType<User>,
   },
   computed: {
     isHaveUser(): any {
       try {
+        // console.log(this.user)
         return this.user?._id
       } catch (error) {
         return {}
