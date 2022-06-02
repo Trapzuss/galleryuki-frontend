@@ -32,6 +32,7 @@
             ></v-text-field>
 
             <v-text-field
+              type="password"
               v-model="password"
               :rules="passwordRules"
               label="password"
@@ -39,7 +40,7 @@
             ></v-text-field>
             <v-row align="center" justify="space-between">
               <v-btn
-                outlined
+                text
                 rounded
                 depressed
                 color="primary"
@@ -57,8 +58,8 @@
                 @click="validate"
               >
                 Login
-              </v-btn></v-row
-            >
+              </v-btn>
+            </v-row>
           </v-form>
         </v-card-text>
       </v-card>

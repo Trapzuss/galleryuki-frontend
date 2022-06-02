@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="end" align="center" class="tw-bg-red-100 tw-rounded-md">
+    <!-- <v-row justify="end" align="center" class="tw-bg-red-100 tw-rounded-md">
       <v-chip
         label
         color="primary"
@@ -15,7 +15,7 @@
         class="tw-font-Ubuntu tw-font-bold tw-text-gray-900 tw-opacity-60 hover:tw-opacity-100 tw-cursor-pointer tw-mx-2"
         >View all <v-icon small>mdi-chevron-right</v-icon></span
       ></v-row
-    >
+    > -->
     <v-row>
       <v-col
         v-for="(post, i) in newestPost"

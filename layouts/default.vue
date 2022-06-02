@@ -40,7 +40,7 @@
       <v-spacer></v-spacer>
       <ProfileMenu @onDisconnect="onDisconnect" />
     </v-app-bar>
-    <v-main>
+    <v-main class="tw-bg-slate-50">
       <v-container class="tw-my-4">
         <v-speed-dial
           fixed

@@ -3,10 +3,13 @@ import firebase from '@/mixins/firebase'
 import { Post } from '@/interfaces/Post.interface'
 import mixins from 'vue-typed-mixins'
 import { mapState } from 'vuex'
+import { createAvatar } from '@dicebear/avatars'
+import * as style from '@dicebear/big-ears'
 export default mixins(firebase).extend({
   computed: {
     ...mapState({
       user: (state: any) => state.user as any,
+      image_url: (state: any) => state.image_url as string,
     }),
   },
   async asyncData({ $axios, route, redirect, req, store }) {
@@ -18,8 +21,15 @@ export default mixins(firebase).extend({
         let profile = await $axios.$get('/auth/profile', {
           withCredentials: true,
         })
-
-        store.commit('SET_USER', profile)
+        const randomString = Math.random().toString(36).substring(2, 15)
+        let svg = createAvatar(style, {
+          dataUri: true,
+          seed: randomString,
+          backgroundColor: '#f8f8f8',
+          // ... and other options
+        })
+        store.commit('SET_USER', { ...profile })
+        store.commit('SET_IMAGE_SRC', svg)
       }
     } catch (error) {
       console.log(error)
@@ -28,7 +38,7 @@ export default mixins(firebase).extend({
   },
   async created() {
     try {
-      let Restrictpath = ['/upload']
+      let Restrictpath = ['/upload', 'profile']
       if (Restrictpath.includes(this.$route.path)) {
         // console.log('เข้า')
 
@@ -92,11 +102,13 @@ export default mixins(firebase).extend({
     },
     async logout() {
       try {
-        this.$swal.fire({
-          icon: 'info',
-          title: 'No dissconnect, ;)',
-          text: `you cantttttttt!!`,
+        await this.$axios.$post('/auth/logout')
+        await this.$swal.fire({
+          icon: 'success',
+          title: 'Logout Successfully',
+          text: `Thank you for using our gallery`,
         })
+        window.open('/', '_self')
       } catch (error) {}
     },
   },
