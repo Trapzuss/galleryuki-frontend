@@ -148,6 +148,13 @@ export default mixins(posts, auth, utils).extend({
 
       if ((await res).isConfirmed) {
         await this.deletePost(this.post._id)
+        this.$swal.fire({
+          title: 'Deleted!',
+          icon: 'success',
+          timer: 1500,
+          toast: true,
+          position: 'top-right',
+        })
         this.$router.push('/')
       }
     },
