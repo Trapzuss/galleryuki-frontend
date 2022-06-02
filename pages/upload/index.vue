@@ -46,7 +46,7 @@
             label="Description"
             v-model="description"
           ></v-textarea>
-          <v-autocomplete
+          <v-select
             allow-overflow
             id="categories"
             solo
@@ -55,7 +55,7 @@
             :rules="categoriesRules"
             label="Categories"
             required
-          ></v-autocomplete>
+          ></v-select>
 
           <v-btn
             :loading="loadingConfirm"
