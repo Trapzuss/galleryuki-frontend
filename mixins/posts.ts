@@ -37,6 +37,27 @@ export default mixins(firebase).extend({
       }
       await this.$axios.$post(`/posts`, payload)
     },
+
+    async deletePost(postId: string) {
+      await this.$axios.$delete(`/posts/${postId}`)
+    },
+    async updatePost(
+      title: string,
+      description: string,
+      category: string,
+      postId: string,
+      userId: string,
+      byUserId: string
+    ) {
+      await this.$axios.$patch(`/posts/${postId}`, {
+        title,
+        description,
+        category,
+        userId,
+        byUserId,
+      })
+      this.$router.push(`/posts/${postId}`)
+    },
     async getPostById(postId: string) {
       return await this.$axios.$get(`/posts/${postId}`)
     },
@@ -45,6 +66,9 @@ export default mixins(firebase).extend({
       // return await this.$axios.$get(`${this.databaseURL}/posts.json`)
       // apiService
       return await this.$axios.$get(`/posts/newest`)
+    },
+    async getUserPosts(userId: string) {
+      return await this.$axios.$get(`/posts?userId=${userId}`)
     },
     async getAllPost() {
       try {
