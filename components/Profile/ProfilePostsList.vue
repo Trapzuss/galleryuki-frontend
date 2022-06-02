@@ -16,9 +16,15 @@
         >View all <v-icon small>mdi-chevron-right</v-icon></span
       ></v-row
     > -->
-    <v-row>
+    <v-row justify="center">
+      <v-col cols="12" class="tw-font-bold tw-font-Ubuntu tw-text-[24px]">
+        My posts
+      </v-col>
+    </v-row>
+
+    <v-row v-if="posts.length != 0">
       <v-col
-        v-for="(post, i) in newestPost"
+        v-for="(post, i) in posts"
         :key="i"
         class="d-flex child-flex"
         cols="2"
@@ -61,6 +67,20 @@
         </v-hover>
       </v-col>
     </v-row>
+    <v-row v-else align="center" justify="center">
+      <v-col cols="12" class="d-flex justify-center align-center">
+        <v-row justify="center" align="center" class="tw-relative">
+          <v-col cols="12" class="tw-absolute tw-font-Ubuntu tw-z-[3]">
+            <p class="tw-font-bold tw-text-[48px] tw-text-center tw-text-white">
+              Empty here.
+            </p>
+          </v-col>
+          <v-avatar size="400" class="tw-opacity-75">
+            <v-img :src="emptySrc"></v-img>
+          </v-avatar>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -71,12 +91,16 @@ import { Post } from '~/interfaces/Post.interface'
 import posts from '~/mixins/posts'
 import utils from '~/mixins/utils'
 export default mixins(posts, utils).extend({
-  async mounted() {
-    this.newestPost = await this.getNewestPost()
+  props: {
+    posts: {
+      type: Array,
+      required: true,
+    },
   },
+
   data() {
     return {
-      newestPost: [] as Array<Post>,
+      emptySrc: 'https://i.imgflip.com/4ew87t.jpg',
     }
   },
 })

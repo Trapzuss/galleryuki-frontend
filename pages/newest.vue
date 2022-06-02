@@ -21,16 +21,16 @@
               class="tw-text-center tw-font-bold tw-text-2xl tw-text-[#ededed]"
             >
               <v-chip outlined color="#ebebeb">
-                The Top amount of favorite in daily/weekly/monthly</v-chip
+                Simple Gallery application</v-chip
               >
             </p>
-            <p
+            <!-- <p
               class="tw-text-center tw-font-bold tw-text-4xl tw-text-[#ededed]"
             >
               <v-chip outlined color="#ebebeb">
                 Be pround of your works.🎇</v-chip
               >
-            </p>
+            </p> -->
           </v-container>
         </v-col>
       </v-row>
@@ -38,17 +38,23 @@
     <v-col cols="12" xl="8">
       <v-container
         ><v-row no-gutters>
-          <v-chip
-            outlined
+          <v-chip filter class="tw-mr-2"
+            ><v-icon>mdi-filter-variant</v-icon></v-chip
+          >
+          <v-btn
+            rounded
+            color="primary"
+            @click="changeActiveTab(i)"
+            :outlined="activeTab != i"
             v-for="(title, i) in filterList"
             :key="i"
-            class="tw-mr-4 tw-cursor-pointer"
+            class="tw-mr-2 tw-cursor-pointer"
             ><span
               class="tw-font-medium tw-text-xl tw-drop-shadow-sm hover:tw-drop-shadow-md tw-transition-opacity tw-opacity-70 hover:tw-opacity-100 tw-ease-in-out"
             >
               {{ title }}
-            </span></v-chip
-          >
+            </span>
+          </v-btn>
         </v-row></v-container
       >
     </v-col>
@@ -56,7 +62,26 @@
       <v-container>
         <v-card elevation="0">
           <v-row>
-            <v-col cols="3" v-for="(post, i) in NewestPosts" :key="i">
+            <!-- {{ postsComputed.length }} -->
+            <v-col cols="12" v-if="postsComputed.length == 0">
+              <v-row justify="center" align="center" class="tw-relative">
+                <v-col cols="12" class="tw-absolute tw-font-Ubuntu tw-z-[3]">
+                  <p
+                    class="tw-font-bold tw-text-[48px] tw-text-center tw-text-white"
+                  >
+                    Empty here.
+                  </p>
+                </v-col>
+                <v-avatar size="400" class="tw-opacity-75">
+                  <v-img
+                    :src="emptySrc"
+                    v-if="postsComputed.length == 0"
+                  ></v-img>
+                </v-avatar>
+              </v-row>
+            </v-col>
+
+            <v-col cols="3" v-for="(post, i) in postsComputed" :key="i" v-else>
               <v-card
                 @click="routeTo(`/posts/${post._id}`)"
                 outlined
@@ -116,15 +141,38 @@ export default mixins(posts, auth, utils).extend({
   layout: 'banner',
   async mounted() {
     this.NewestPosts = await this.getNewestPost()
+    this.postsComputed = this.NewestPosts
   },
   computed: {},
+
   data() {
     return {
-      filterList: ['no', 'ice', '🎇'],
+      emptySrc: 'https://i.imgflip.com/4ew87t.jpg',
+      activeTab: 0,
+      filterList: ['All', 'Meme', 'Parody', 'Manga', 'Original', 'Drawing'],
       NewestPosts: [] as any,
+      postsComputed: [],
     }
   },
   methods: {
+    changeActiveTab(value: any) {
+      try {
+        this.activeTab = value
+        let temp = this.NewestPosts
+        let posts
+        if (value == 0) {
+          posts = temp
+        } else {
+          posts = temp.filter(
+            (post: any) => post.category == this.filterList[value].toLowerCase()
+          )
+        }
+        this.postsComputed = posts
+      } catch (error) {
+        console.log(error)
+        return 0
+      }
+    },
     bannerImg(src: string) {
       try {
         return `background-image: url(${src}); `

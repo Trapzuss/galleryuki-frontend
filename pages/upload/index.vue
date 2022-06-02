@@ -1,6 +1,12 @@
 <template>
   <v-container>
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+      @submit.prevent="onConfirmPost"
+      enctype="multipart/form-data"
+    >
       <v-row>
         <v-col
           cols="12"
@@ -12,30 +18,18 @@
               class="imagePreviewWrapper"
               :style="{ 'background-image': `url(${previewImage})` }"
             ></div>
-            <!-- <v-hover>
-              <template #default="{ hover }">
-                <v-container class="tw-relative" @click="selectImage">
-                  <v-row align="center" justify="center">
-                    <div v-if="!previewImage">
-                      <v-avatar color="primary" size="150">
-                        <v-icon color="white" size="100">mdi-account</v-icon>
-                      </v-avatar>
-                    </div>
-                  </v-row>
-                </v-container>
-              </template>
-            </v-hover> -->
-            <input ref="fileInput" type="file" @input="pickFile" />
-            <!-- {{ previewImage }} -->
+
+            <input
+              ref="fileInput"
+              type="file"
+              name="uploadimage"
+              accept="image/*"
+              @input="pickFile"
+            />
           </div>
         </v-col>
 
         <v-col cols="12">
-          <!-- 
-            tag
-            categories
-            visibleto
-           -->
           <v-text-field
             id="title"
             solo
@@ -52,7 +46,7 @@
             label="Description"
             v-model="description"
           ></v-textarea>
-          <v-autocomplete
+          <v-select
             allow-overflow
             id="categories"
             solo
@@ -61,41 +55,12 @@
             :rules="categoriesRules"
             label="Categories"
             required
-          ></v-autocomplete>
+          ></v-select>
 
-          <!-- <v-combobox
-            solo
-            v-model="selectTags"
-            :items="trendTags"
-            label="Tags"
-            multiple
-            chips
-          >
-            <template v-slot:selection="data">
-              <v-chip
-                :key="JSON.stringify(data.item)"
-                v-bind="data.attrs"
-                :input-value="data.selected"
-                :disabled="data.disabled"
-                @click:close="data.parent.selectItem(data.item)"
-              >
-                <v-avatar
-                  class="accent white--text"
-                  left
-                  v-text="data.item.slice(0, 1).toUpperCase()"
-                ></v-avatar>
-                {{ data.item }}
-              </v-chip>
-            </template>
-          </v-combobox>
-          <v-radio-group v-model="row" row>
-            <v-radio label="All ages" value="1"></v-radio>
-            <v-radio label="R-18" value="2"></v-radio>
-          </v-radio-group> -->
           <v-btn
             :loading="loadingConfirm"
             color="#272727"
-            @click="onConfirmPost"
+            type="submit"
             :disabled="!valid"
             class="tw-mr-4"
             ><span class="tw-text-white">Confirm</span>
@@ -125,6 +90,8 @@ export default mixins(posts, auth).extend({
       selectTags: null,
       description: '',
       categories: [
+        { text: 'Meme', value: 'meme' },
+        { text: 'Parody', value: 'parody' },
         { text: 'Manga', value: 'manga' },
         { text: 'Original', value: 'original' },
         { text: 'Drawing', value: 'drawing' },
@@ -138,6 +105,7 @@ export default mixins(posts, auth).extend({
       titleRules: [(v: any) => !!v || 'Title is required'],
       categoriesRules: [(v: any) => !!v || 'Categories is required'],
       loadingConfirm: false,
+      tempfile: '',
     }
   },
   methods: {
@@ -152,6 +120,18 @@ export default mixins(posts, auth).extend({
             categories: this.selectCategories,
             imageFile: this.selectedFile,
           }
+          // console.log(this.selectedFile)
+
+          // var formData = new FormData()
+
+          // formData.append('uploadimage', this.selectedFile)
+          // console.log(formData)
+          // await this.$axios.$post(
+          //   `http://localhost:3200/uploadphoto`,
+          //   formData
+
+          // )
+
           await this.createPost(payload)
           await this.$swal.fire({
             icon: 'success',
@@ -172,6 +152,8 @@ export default mixins(posts, auth).extend({
           icon: 'error',
           title: 'เกิดข้อผิดพลาด',
         })
+      } finally {
+        this.loadingConfirm = false
       }
     },
     selectImage() {
@@ -181,6 +163,7 @@ export default mixins(posts, auth).extend({
     pickFile() {
       let input = this.$refs.fileInput as any
       let file = input.files
+      this.tempfile = file
       if (file && file[0]) {
         let reader = new FileReader()
         reader.onload = (e: any) => {
