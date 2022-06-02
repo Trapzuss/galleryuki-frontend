@@ -49,14 +49,35 @@ export default mixins(firebase).extend({
       userId: string,
       byUserId: string
     ) {
-      await this.$axios.$patch(`/posts/${postId}`, {
-        title,
-        description,
-        category,
-        userId,
-        byUserId,
-      })
-      this.$router.push(`/posts/${postId}`)
+      try {
+        await this.$axios.$patch(`/posts/${postId}`, {
+          title,
+          description,
+          category,
+          userId,
+          byUserId,
+        })
+        this.$swal.fire({
+          position: 'top-right',
+          timer: 1500,
+          toast: true,
+          icon: 'success',
+          title: 'Done! Post updated',
+          text: `Post updated successfully`,
+        })
+        this.$router.push(`/posts/${postId}`)
+      } catch (error: any) {
+        console.log(error)
+        this.$swal.fire({
+          position: 'top-right',
+
+          timer: 1500,
+          toast: true,
+          icon: 'error',
+          title: 'Error',
+          text: `Something went wrong - ${error.response.data.message}`,
+        })
+      }
     },
     async getPostById(postId: string) {
       return await this.$axios.$get(`/posts/${postId}`)
