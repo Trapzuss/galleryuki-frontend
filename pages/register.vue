@@ -98,9 +98,9 @@ export default mixins(utils, auth).extend({
         let form = this.$refs.form as any
         if (form.validate()) {
           await this.register(
-            this.userDisplayName,
             this.username,
-            this.password
+            this.password,
+            this.userDisplayName
           )
           this.$router.push('/login')
         }
