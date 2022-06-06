@@ -111,6 +111,17 @@ export default mixins(posts, auth).extend({
   methods: {
     async onConfirmPost() {
       try {
+        // console.log(this.selectedFile)
+
+        // var formData = new FormData()
+
+        // formData.append('uploadimage', this.selectedFile)
+        // console.log(formData)
+        // await this.$axios.$post(
+        //   `http://localhost:3200/uploadphoto`,
+        //   formData
+
+        // )
         this.loadingConfirm = true
         if (this.validate()) {
           let payload = {
@@ -120,17 +131,6 @@ export default mixins(posts, auth).extend({
             categories: this.selectCategories,
             imageFile: this.selectedFile,
           }
-          // console.log(this.selectedFile)
-
-          // var formData = new FormData()
-
-          // formData.append('uploadimage', this.selectedFile)
-          // console.log(formData)
-          // await this.$axios.$post(
-          //   `http://localhost:3200/uploadphoto`,
-          //   formData
-
-          // )
 
           await this.createPost(payload)
           await this.$swal.fire({
